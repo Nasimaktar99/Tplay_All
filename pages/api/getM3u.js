@@ -7,7 +7,7 @@ const getUserChanDetails = async () => {
     let obj = { list: [] };
 
     try {
-        const responseHmac = await fetch("https://tplayapi.code-crafters.app/321codecrafters/hmac.json");
+        const responseHmac = await fetch("https://tplay.ygxworld.in/api/${channelID}/hmac?apiKey=oiycZvKtySkbYmo3W6bS");
         const data = await responseHmac.json();
         hmacValue = data.data.hmac.hdntl.value;
     } catch (error) {
@@ -16,8 +16,10 @@ const getUserChanDetails = async () => {
     }
 
     try {
-        const responseChannels = await fetch("https://tplayapi.code-crafters.app/321codecrafters/fetcher.json");
+        const responseChannels = await fetch("https://tplay.ygxworld.in/api/fetcher.json");
         const cData = await responseChannels.json();
+
+	const keysResponse = await fetch("https://tplay.ygxworld.in/api/${channel.id}/keys");
 
         if (cData && cData.data && Array.isArray(cData.data.channels)) {
             const flatChannels = cData.data.channels.flat();
